@@ -1,0 +1,343 @@
+/* =========================
+   1. THEME VARIABLES
+   Main colors used throughout the app
+========================= */
+:root {
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #0f172a;
+    --muted: #64748b;
+
+    --accent: #facc15;
+    --accent-dark: #eab308;
+
+    --border: rgba(15, 23, 42, 0.1);
+    --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+
+    --success: #22c55e;
+    --danger: #ef4444;
+}
+
+/* =========================
+   2. GLOBAL RESET / BASE
+========================= */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+/* =========================
+   3. APP LAYOUT
+   Main card container
+========================= */
+.app {
+    width: min(90%, 700px);
+    margin: 60px auto;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+}
+
+/* =========================
+   4. APP HEADER
+========================= */
+.app-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.app-header h1 {
+    margin: 0 0 10px;
+    font-size: 2.2rem;
+    color: var(--text);
+}
+
+.app-header p {
+    margin: 0;
+    color: var(--muted);
+}
+
+/* =========================
+   5. TASK FORM
+   Input + Add Task button
+========================= */
+.task-form {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.task-form input {
+    flex: 1;
+    padding: 14px 16px;
+    border-radius: 12px;
+    outline: none;
+    border: 1px solid var(--border);
+    background-color: white;
+    color: var(--text);
+    font-size: 1rem;
+}
+
+.task-form input::placeholder {
+    color: var(--muted);
+}
+
+.task-form button {
+    padding: 14px 18px;
+    border: none;
+    border-radius: 12px;
+    background-color: var(--accent);
+    color: #0f172a;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.task-form button:hover {
+    background-color: var(--accent-dark);
+    transform: translateY(-2px);
+}
+
+/* =========================
+   6. TASK CONTROLS
+   Filters + task count
+========================= */
+.task-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.filters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: white;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background-color: var(--accent);
+    border-color: var(--accent);
+}
+
+#task-count {
+    margin: 0;
+    color: var(--muted);
+}
+
+/* =========================
+   6A. TASK SUMMARY
+   Count + clear completed button
+========================= */
+.task-summary {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.clear-btn {
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: white;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.clear-btn:hover {
+    background-color: #fee2e2;
+    border-color: #fecaca;
+}
+
+/* =========================
+   7. TASK LIST
+========================= */
+.task-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* =========================
+   7A. EMPTY STATE
+   Message shown when no tasks exist
+========================= */
+.empty-state {
+    padding: 24px;
+    border: 1px dashed var(--border);
+    border-radius: 14px;
+    text-align: center;
+    color: var(--muted);
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+/* =========================
+   8. TASK ITEM
+   Individual task card
+========================= */
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    border-radius: 12px;
+
+    background-color: white;
+    border: 1px solid var(--border);
+
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeSlideIn 0.35s ease forwards;
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.25s ease;
+}
+
+.task-item:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+.task-text {
+    flex: 1;
+    word-break: break-word;
+}
+
+.task-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+}
+
+.task-date {
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+.task-item.completed {
+    background-color: #fefce8;
+}
+
+.task-item.completed .task-text {
+    text-decoration: line-through;
+    opacity: 0.55;
+}
+
+/* =========================
+   9. TASK ACTION BUTTONS
+   Complete + Delete
+========================= */
+.task-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.task-btn {
+    border: none;
+    border-radius: 10px;
+    padding: 10px 12px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+}
+
+.task-btn:hover {
+    transform: translateY(-1px);
+    opacity: 0.95;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+}
+
+.complete-btn {
+    background-color: var(--accent);
+    color: #0f172a;
+}
+
+.edit-btn {
+    background-color: #f59e0b;
+    color: white;
+}
+
+.delete-btn {
+    background-color: var(--danger);
+    color: white;
+}
+
+/* =========================
+   11. ANIMATIONS
+========================= */
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+   10. RESPONSIVE DESIGN
+========================= */
+@media (max-width: 600px) {
+    .app {
+        padding: 20px;
+        margin: 30px auto;
+    }
+
+    .task-form {
+        flex-direction: column;
+    }
+
+    .task-form button {
+        width: 100%;
+    }
+
+    .task-item {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .task-actions {
+        justify-content: flex-end;
+    }
+
+    .task-summary {
+        justify-content: space-between;
+    }
+
+    .task-summary {
+        width: 100%;
+        justify-content: space-between;
+    }
+}

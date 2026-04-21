@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basic page setup -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do App | Arham</title>
+
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- =========================
+     APP CONTAINER
+     Holds the whole to-do app
+========================== -->
+<main class="app">
+
+    <!-- APP HEADER -->
+    <header class="app-header">
+        <h1>To-Do App</h1>
+        <p>Organize your tasks and stay consistent.</p>
+    </header>
+
+    <!-- TASK INPUT SECTION -->
+    <section class="task-input-section">
+        <form id="task-form" class="task-form">
+            <input
+                    type="text"
+                    id="task-input"
+                    placeholder="Enter a new task..."
+                    required
+            />
+
+            <input
+                type = "date"
+                id = "task-date"
+                />
+
+            <button type="submit">Add Task</button>
+        </form>
+    </section>
+
+    <!-- FILTER + TASK INFO -->
+    <section class="task-controls">
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="active">Active</button>
+            <button class="filter-btn" data-filter="completed">Completed</button>
+        </div>
+
+        <div class="task-summary">
+            <p id="task-count">0 tasks total</p>
+            <button id="clear-completed-btn" class="clear-btn" type="button">
+                Clear Completed
+            </button>
+        </div>
+    </section>
+
+    <!-- TASK LIST -->
+    <section class="task-list-section">
+        <ul id="task-list" class="task-list"></ul>
+    </section>
+
+</main>
+
+<!-- Main JavaScript -->
+<script src="script.js"></script>
+</body>
+</html>
