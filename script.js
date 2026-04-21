@@ -172,16 +172,16 @@ function renderTasks() {
         taskInfo.appendChild(textSpan);
 
         if (task.dueDate) {
-            const dueDateText = document.createElement("small");
-            dueDateText.classList.add("task-date");
-            const formattedDate = new Date(task.dueDate).toLocaleDateString(undefined, {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric"
+          dueDateText.classList.add("task-date");
+          const formattedDate = new Date(task.dueDate).toLocaleDateString(undefined, {
+    year: "numeric",
+    month: "short",
+    day: "numeric"
 });
 
 dueDateText.textContent = `Due: ${formattedDate}`;
-            taskInfo.appendChild(dueDateText);
+
+         taskInfo.appendChild(dueDateText);
         }
 
         const actions = document.createElement("div");
